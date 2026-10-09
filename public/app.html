@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Network — My Engager Network (MEN)</title>
+<meta name="description" content="Your MEN dashboard: top 7 most-starred engagers, your engager lists, who added you, and your private notepad.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/app"><span class="logo-mark">M</span><span>My Engager Network</span></a>
+    <span class="nav-spacer"></span>
+    <span id="userChip" style="color:var(--muted);font-size:14px"></span>
+    <button class="btn ghost small" id="logoutBtn">Log out</button>
+  </div>
+</header>
+
+<main class="wrap with-nav">
+  <div class="app-head">
+    <h2>Your network</h2>
+    <span class="nav-spacer"></span>
+    <div class="tabs" id="platformTabs"></div>
+  </div>
+
+  <!-- HOME -->
+  <section id="view-home">
+    <div class="acct">
+      <h3>Account details</h3>
+      <div class="kv"><span>Email</span><span id="acctEmail">—</span></div>
+      <div class="kv"><span>Display name</span><span id="acctName">—</span></div>
+      <div class="kv"><span>Member since</span><span id="acctSince">—</span></div>
+      <div class="kv"><span>Engagers tracked</span><span id="acctCount">—</span></div>
+    </div>
+
+    <div class="top7">
+      <h3>🏆 Top 7 Most Starred Engagers</h3>
+      <p class="sub" id="top7sub">Your highest-starred engagers on this platform.</p>
+      <ol id="top7list"></ol>
+    </div>
+
+    <div class="add-box">
+      <h3 id="addTitle">Add a TikTok engager</h3>
+      <p>Found someone worth remembering? Drop their username — they join your link list instantly.</p>
+      <div class="add-row">
+        <input class="input" id="handleInput" placeholder="@username" autocomplete="off" maxlength="60">
+        <button class="btn" id="addBtn">＋ Add engager</button>
+      </div>
+      <div class="form-err" id="addErr" style="margin-top:10px"></div>
+    </div>
+
+    <div class="toolbar">
+      <input class="input" id="searchInput" placeholder="Search username or notes…" autocomplete="off">
+      <select class="input" id="sortSelect">
+        <option value="stars">Sort: most stars</option>
+        <option value="name">Sort: name A–Z</option>
+        <option value="recent">Sort: recently added</option>
+      </select>
+    </div>
+    <div class="eng-list" id="engagerList"></div>
+
+    <div class="added-me">
+      <h3>👀 Who added you</h3>
+      <p class="sub" id="addedMeSub" style="color:var(--muted);font-size:13px;margin-bottom:10px">Claim your handle in My Profile so members can find you.</p>
+      <ul id="addedMeList"></ul>
+    </div>
+  </section>
+
+  <!-- NOTEPAD -->
+  <section id="view-notes" hidden>
+    <div class="app-head"><h2>🗒️ Private notepad</h2></div>
+    <p style="color:var(--muted);font-size:14px;margin-bottom:14px">Only you can see these. Never public, never shared.</p>
+    <div class="add-box">
+      <div class="field"><input class="input" id="noteTitle" placeholder="Note title" maxlength="120"></div>
+      <div class="field"><textarea class="input" id="noteBody" placeholder="Write anything…"></textarea></div>
+      <button class="btn" id="noteAddBtn">Save note</button>
+    </div>
+    <div id="notesList"></div>
+  </section>
+
+  <!-- PROFILE / HANDLES -->
+  <section id="view-profile" hidden>
+    <div class="app-head"><h2>🙋 My profile</h2></div>
+    <div class="card">
+      <h3>Claim your handles</h3>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:14px">Tell MEN who you are on each platform. When someone adds your username as an engager, they&rsquo;ll land on your in-app profile first — showing your links and your total stars.</p>
+      <div class="handles-grid" id="handlesGrid"></div>
+      <div style="margin-top:14px"><button class="btn" id="handlesSave">Save handles</button></div>
+      <div class="form-err" id="handlesErr" style="margin-top:10px"></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3>Your public in-app profiles</h3>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:10px">Anyone who clicks your username lands here first:</p>
+      <div id="myProfileLinks" style="display:grid;gap:8px"></div>
+    </div>
+  </section>
+</main>
+
+<nav class="bottom-nav">
+  <button data-view="home" class="active"><span class="ico">🏠</span>Home</button>
+  <button data-view="notes"><span class="ico">🗒️</span>Notepad</button>
+  <button data-view="profile"><span class="ico">🙋</span>My Profile</button>
+</nav>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

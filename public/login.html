@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in — My Engager Network (MEN)</title>
+<meta name="description" content="Log in or create your free My Engager Network account to build your engager list, star engagers and keep private notes.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><span class="logo-mark">M</span><span>My Engager Network <small>(MEN)</small></span></a>
+  </div>
+</header>
+<main class="wrap">
+  <div class="form-card">
+    <h2 id="formTitle">Welcome back</h2>
+    <p class="sub" id="formSub">Log in to build your network.</p>
+    <div class="form-err" id="formErr"></div>
+    <form id="authForm">
+      <div class="field" id="nameField" style="display:none">
+        <label for="displayName">Display name (optional)</label>
+        <input class="input" id="displayName" autocomplete="name" maxlength="60">
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input class="input" id="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input class="input" id="password" type="password" autocomplete="current-password" required minlength="8">
+      </div>
+      <button class="btn block" type="submit" id="submitBtn">Log in</button>
+    </form>
+    <p class="form-switch" id="switchLine">New here? <a href="/login?mode=signup" id="switchLink">Create an account</a></p>
+  </div>
+</main>
+<script src="/js/login.js"></script>
+</body>
+</html>

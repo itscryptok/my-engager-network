@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String          @id @default(cuid())
+  email        String          @unique
+  passwordHash String
+  displayName  String?
+  createdAt    DateTime        @default(now())
+  handles      ClaimedHandle[]
+  engagers     Engager[]
+  notes        Note[]
+  sessions     Session[]
+}
+
+model ClaimedHandle {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  platform  String
+  handle    String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, platform])
+  @@index([platform, handle])
+}
+
+model Engager {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  platform  String
+  username  String
+  notes     String   @default("")
+  stars     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, platform, username])
+  @@index([userId, platform])
+  @@index([platform, username])
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  body      String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Session {
+  token     String   @id
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
